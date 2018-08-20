@@ -1,10 +1,61 @@
-apply plugin: 'java'
-apply plugin: 'kotlin'
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+        applicationId "com.wiseassblog.kotlincalculator"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+            minifyEnabled false
+
+        }
+    }
+
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+        }
+    }
+
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+dependencies {
+    implementation deps.android.appcompat
+    implementation deps.android.constraint_layout
+    implementation deps.android.lifecycle_extensions
+    implementation deps.kotlin.kotlin_jre
+    implementation deps.kotlin.coroutines_core
+    implementation deps.kotlin.coroutines_android
+    kapt deps.android.lifecycle_compiler
+
+    testImplementation deps.test.junit
+    testImplementation deps.test.mockito
+    testImplementation deps.test.kotlin_junit
+    testImplementation deps.test.test_runner
+    testImplementation deps.test.test_rules
+
+    implementation deps.dagger.main
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.compiler_apt
+    kapt deps.dagger.processor_apt
+}
+
+

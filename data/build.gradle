@@ -7,32 +7,55 @@ android {
     compileSdkVersion 26
 
     defaultConfig {
+        applicationId "com.wiseassblog.kotlincalculator"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
-        release {
+        debug {
+            testCoverageEnabled = true
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+    }
+
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
         }
     }
 
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.android.appcompat
+    implementation deps.android.constraint_layout
+    implementation deps.android.lifecycle_extensions
+    implementation deps.kotlin.kotlin_jre
+    implementation deps.kotlin.coroutines_core
+    implementation deps.kotlin.coroutines_android
+    kapt deps.android.lifecycle_compiler
 
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    testImplementation deps.test.junit
+    testImplementation deps.test.mockito
+    testImplementation deps.test.kotlin_junit
+    testImplementation deps.test.test_runner
+    testImplementation deps.test.test_rules
+
+    implementation deps.dagger.main
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.compiler_apt
+    kapt deps.dagger.processor_apt
 }
 repositories {
     mavenCentral()
