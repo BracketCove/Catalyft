@@ -42,7 +42,6 @@ dependencies {
     implementation deps.kotlin.kotlin_jre
     implementation deps.kotlin.coroutines_core
     implementation deps.kotlin.coroutines_android
-    kapt deps.android.lifecycle_compiler
 
     testImplementation deps.test.junit
     testImplementation deps.test.mockito
@@ -50,9 +49,13 @@ dependencies {
     testImplementation deps.test.test_runner
     testImplementation deps.test.test_rules
 
-    implementation deps.dagger.main
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
-    kapt deps.dagger.compiler_apt
-    kapt deps.dagger.processor_apt
+    kapt deps.android.lifecycle_compiler
+    //Currently causing errors!
+//    implementation deps.dagger.main
+//    implementation deps.dagger.android
+//    implementation deps.dagger.android_support
+//
+//
+//    kapt deps.dagger.compiler_apt
+//    kapt deps.dagger.processor_apt
 }
