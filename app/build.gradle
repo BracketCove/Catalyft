@@ -51,11 +51,10 @@ dependencies {
 
     kapt deps.android.lifecycle_compiler
     //Currently causing errors!
-//    implementation deps.dagger.main
-//    implementation deps.dagger.android
-//    implementation deps.dagger.android_support
-//
-//
-//    kapt deps.dagger.compiler_apt
-//    kapt deps.dagger.processor_apt
+    implementation deps.dagger.main
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+
+    kapt deps.dagger.compiler_apt
+    kapt deps.dagger.android_apt
 }
