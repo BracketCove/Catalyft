@@ -5,11 +5,11 @@ apply plugin: 'kotlin-kapt'
 
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion build_versions.target_sdk
     defaultConfig {
         applicationId "com.wiseassblog.catalyft"
-        minSdkVersion 21
-        targetSdkVersion 26
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -36,25 +36,26 @@ android {
 }
 
 dependencies {
+
+
     implementation deps.android.appcompat
     implementation deps.android.constraint_layout
     implementation deps.android.lifecycle_extensions
     implementation deps.kotlin.kotlin_jre
     implementation deps.kotlin.coroutines_core
     implementation deps.kotlin.coroutines_android
+    implementation deps.dagger.main
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+
+
+    kapt deps.android.lifecycle_compiler
+    kapt deps.dagger.compiler_apt
+    kapt deps.dagger.android_apt
 
     testImplementation deps.test.junit
     testImplementation deps.test.mockito
     testImplementation deps.test.kotlin_junit
     testImplementation deps.test.test_runner
     testImplementation deps.test.test_rules
-
-    kapt deps.android.lifecycle_compiler
-    //Currently causing errors!
-    implementation deps.dagger.main
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
-
-    kapt deps.dagger.compiler_apt
-    kapt deps.dagger.android_apt
 }

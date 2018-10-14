@@ -1,5 +1,6 @@
 package com.wiseassblog.domain.domainmodel
 
+//Either Monad (Functional Construct)
 sealed class Result<out E, out V> {
 
     data class Value<out V>(val value: V) : Result<Nothing, V>()
@@ -7,16 +8,19 @@ sealed class Result<out E, out V> {
     data class Error<out E>(val error: E) : Result<E, Nothing>()
 
     companion object Factory{
-        inline fun <V> buildValue(function: () -> V): Result<Nothing, V> {
-            return Value(function.invoke())
-        }
+        inline fun <V> build(function: () -> V): Result<Exception, V> =
+                try {
+                    Value(function.invoke())
+                } catch (e: java.lang.Exception) {
+                    Error(e)
+                }
 
-        inline fun buildError(error: Exception): Result<Exception, Nothing> {
+        fun buildError(error: Exception): Result<Exception, Nothing> {
             return Error(error)
         }
 
-        inline fun buildLoading(error: Exception): Result<Exception, Nothing> {
-            return Error(error)
+        fun buildLoading(): Result<Exception, Nothing> {
+            return Loading
         }
     }
 

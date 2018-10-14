@@ -1,8 +1,19 @@
 apply plugin: 'java-library'
 
+apply plugin: 'kotlin'
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":common")
+
+    implementation deps.kotlin.coroutines_core
+    implementation deps.kotlin.kotlin_jre
+
+    testImplementation deps.test.junit
+    testImplementation deps.test.mockito
+    testImplementation deps.test.kotlin_junit
+    testImplementation deps.test.test_runner
+    testImplementation deps.test.test_rules
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

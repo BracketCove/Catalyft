@@ -6,7 +6,6 @@ data class ExerciseTemplate(val id: String,
                             var muscleGroups: List<String>,
                             var exerciseModality: String,
                             var isFavourite: Boolean,
-                            var isCustom: Boolean
-)
+                            var isCustom: Boolean)
 
 

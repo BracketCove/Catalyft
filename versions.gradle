@@ -18,13 +18,15 @@ def versions = [:]
 versions.lifecycle = "1.1.1"
 versions.support = "26.1.0"
 versions.junit = "4.12"
+versions.room = "1.1.1"
+versions.navigation = "1.0.0-alpha04"
 versions.espresso = "3.0.1"
 versions.mockito = "2.13.0"
 versions.support_test = "1.0.1"
 versions.constraint_layout = "1.0.2"
-versions.coroutine_version = "0.22.5"
+versions.coroutine_version = "0.30.2"
 versions.android_gradle_plugin = "3.1.3"
-versions.kotlin = "1.2.30"
+versions.kotlin = "1.2.70"
 versions.dagger = "2.17"
 
 def deps = [:]
@@ -36,6 +38,18 @@ android.constraint_layout = "com.android.support.constraint:constraint-layout:$v
 android.lifecycle_extensions = "android.arch.lifecycle:extensions:$versions.lifecycle"
 android.lifecycle_compiler = "android.arch.lifecycle:compiler:$versions.lifecycle"
 deps.android = android
+
+def room = [:]
+
+room.runtime = "android.arch.persistence.room:runtime:$versions.room"
+room.compiler = "android.arch.persistence.room:compiler:$versions.room"
+room.testing = "android.arch.persistence.room:testing:$versions.room"
+deps.room = room
+
+def navigation = [:]
+navigation.ktx_fragment = "android.arch.navigation:navigation-fragment-ktx:$versions.navigation"
+navigation.nav_ui = "android.arch.navigation:navigation-ui-ktx:$versions.navigation"
+deps.navigation = navigation
 
 def test = [:]
 
@@ -67,7 +81,7 @@ deps.dagger = dagger
 
 def build_versions = [:]
 build_versions.min_sdk = 21
-build_versions.target_sdk = 26
+build_versions.target_sdk = 27
 build_versions.build_tools = "27.0.3"
 ext.build_versions = build_versions
 
