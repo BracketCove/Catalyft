@@ -9,23 +9,23 @@ import com.wiseassblog.domain.repository.IWorkoutRepository
  */
 class WorkoutInteractor(val workoutRepository: IWorkoutRepository) {
 
-    suspend fun getWorkout(creationDate: String): Result<Workout, Exception> {
-        return TODO() //returns Nothing (special Kotlin type)
+    suspend fun getWorkout(creationDate: String): Result<Exception, Workout> {
+        return workoutRepository.getWorkoutById(creationDate)
     }
 
-    suspend fun updateWorkout(): Result<Workout, Exception> {
+    suspend fun updateWorkout(workout: Workout): Result<Exception, Workout> {
+        return workoutRepository.updateWorkout(workout)
+    }
+
+    suspend fun deleteWorkout(tesT_WORKOUT_ID: String): Result<Exception, Boolean> {
         return TODO()
     }
 
-    suspend fun deleteWorkout(): Result<Boolean, Exception> {
+    suspend fun getWorkoutsByDay(dateByDay: String): Result<Exception, Workout> {
         return TODO()
     }
 
-    suspend fun getWorkoutsByDay(dateByDay: String): Result<Workout, Exception> {
-        return TODO()
-    }
-
-    suspend fun getWorkoutsByMonth(dateByMonth: String): Result<Workout, Exception> {
+    suspend fun getWorkoutsByMonth(dateByMonth: String): Result<Exception, Workout> {
         return TODO()
     }
 }

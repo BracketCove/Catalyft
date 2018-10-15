@@ -1,6 +1,7 @@
 package com.wiseassblog.domain.domainmodel
 
 //Either Monad (Functional Construct)
+// Either<L,R> L = Error Case, R = Value (Success)
 sealed class Result<out E, out V> {
 
     data class Value<out V>(val value: V) : Result<Nothing, V>()

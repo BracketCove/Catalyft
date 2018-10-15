@@ -7,8 +7,8 @@ const val ERROR_UNSC_IO = "Unable to access IO Device."
  * Errors which
  */
 sealed class Error(message: String? = null): Exception(message) {
-    class RecordNotFound: Error(ERROR_NOT_FOUND)
-    class IoDeviceFailure: Error(ERROR_UNSC_IO)
+    object RecordNotFound: Error(ERROR_NOT_FOUND)
+    object IoDeviceFailure: Error(ERROR_UNSC_IO)
 }
 
 
